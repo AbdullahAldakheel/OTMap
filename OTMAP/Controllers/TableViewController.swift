@@ -22,19 +22,16 @@ class TableViewController: ContainerViewController {
     }
     var locations: [StudentInfo] = [] {
         didSet {
+            let  a = StudentInfo(mapString: "de", mediaURL: "de")
+            locations.append(a)
             tableView.reloadData()
         }
     }
-    
+
 }
 
 
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
@@ -49,6 +46,13 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         cell.name.text = l.mapString
         cell.web.text = l.mediaURL
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let loc = locations[indexPath.row]
+        if let url = URL(string: loc.mediaURL!),
+            UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
     
 }
