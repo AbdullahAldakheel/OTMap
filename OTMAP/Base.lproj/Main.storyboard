@@ -124,7 +124,7 @@
             </objects>
             <point key="canvasLocation" x="-1130.4347826086957" y="356.91964285714283"/>
         </scene>
-        <!--Item-->
+        <!--Map View Controller-->
         <scene sceneID="RC7-vv-a3h">
             <objects>
                 <viewController id="Ine-qQ-Vd4" customClass="MapViewController" customModule="OTMAP" customModuleProvider="target" sceneMemberID="viewController">
@@ -183,7 +183,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b4p-FG-Tgg"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="qz8-U2-CvS"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon_mapview-deselected" selectedImage="icon_mapview-selected" id="qz8-U2-CvS"/>
                     <connections>
                         <outlet property="MapView" destination="opf-2O-HbG" id="Lq9-t8-1Dn"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="logOut" id="oM2-2I-oN5"/>
@@ -391,7 +391,7 @@
             </objects>
             <point key="canvasLocation" x="-409" y="1651"/>
         </scene>
-        <!--Item-->
+        <!--Table View Controller-->
         <scene sceneID="mmf-eV-I6u">
             <objects>
                 <viewController id="7PB-AP-H0J" customClass="TableViewController" customModule="OTMAP" customModuleProvider="target" sceneMemberID="viewController">
@@ -497,7 +497,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dkq-Ab-f0I"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="BEj-1r-6o1"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon_listview-deselected" selectedImage="icon_listview-selected" id="BEj-1r-6o1"/>
                     <navigationItem key="navigationItem" id="wl7-pY-bst"/>
                     <connections>
                         <outlet property="tableView" destination="bZZ-pO-5l3" id="kIA-Ro-ve6"/>
@@ -510,6 +510,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon_listview-deselected" width="75" height="50"/>
+        <image name="icon_listview-selected" width="75" height="50"/>
+        <image name="icon_mapview-deselected" width="75" height="50"/>
+        <image name="icon_mapview-selected" width="75" height="50"/>
         <image name="icon_pin" width="24" height="24"/>
         <image name="icon_world" width="52" height="67"/>
         <image name="loading" width="46" height="46"/>

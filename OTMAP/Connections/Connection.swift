@@ -74,7 +74,7 @@ class Connection: UIViewController {
     }
         
         static func getUserLocations(limit: Int = 100, skip: Int = 0, orderBy: SLParam = .updatedAt, completion: @escaping (locationInfo?)->Void) {
-            let url = URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")! //change the url
+            let url = URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!
             let session = URLSession.shared
             var request = URLRequest(url: url)
             
@@ -130,10 +130,14 @@ class Connection: UIViewController {
         
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
-            if error != nil {
-                return
-            }
+            if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+                if statusCode >= 200 && statusCode < 300 {
+                    if error != nil {
+                        return
+                    }
             print(String(data: data!, encoding: .utf8)!)
+                }
+            }
         }
         
         DispatchQueue.main.async {
@@ -141,6 +145,37 @@ class Connection: UIViewController {
         }
         task.resume()
     }
+    static func logout_now(completion: @escaping (String?)->Void) {
+        
+        var request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/session")!)
+        request.httpMethod = "DELETE"
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+                if statusCode >= 200 && statusCode < 300 {
+            if error != nil {
+                return
+            }
+            let range = Range(5..<data!.count)
+            let newData = data?.subdata(in: range)
+            print(String(data: newData!, encoding: .utf8)!)
+                }
+            }
+            DispatchQueue.main.async {
+                completion("Done")
+            }
+        
+        
+        }
+        task.resume()
     
-    
+}
 }

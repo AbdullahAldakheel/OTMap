@@ -43,7 +43,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let l = locations[indexPath.row]
-        cell.name.text = l.mapString
+        cell.name.text = l.firstName
         cell.web.text = l.mediaURL
         return cell
     }
