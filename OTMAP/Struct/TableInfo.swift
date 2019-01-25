@@ -12,7 +12,6 @@ import UIKit
 class TableInfo: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
-    
     @IBOutlet weak var web: UILabel!
     
 }

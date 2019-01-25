@@ -41,7 +41,7 @@ class ContainerViewController: UIViewController {
                 return
             }
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "logOut", sender: "1")
+               self.performSegue(withIdentifier: "logOut", sender: "1")
             }
         }
        

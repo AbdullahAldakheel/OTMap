@@ -19,7 +19,6 @@ class LogInController: UIViewController {
     @IBOutlet weak var errorEmail: UILabel!
     @IBOutlet weak var errorPass: UILabel!
     var logInSession:String = ""
-    
     @IBOutlet weak var loadingImg: UIImageView!
     
     
@@ -40,7 +39,7 @@ class LogInController: UIViewController {
 
     
     @IBAction func logIn(_ sender: Any) {
-        
+
     loadingImg.isHidden = false
         if getEmail.text == "" {
             errorEmail.text = "Email or pass incorrect"
@@ -63,6 +62,7 @@ class LogInController: UIViewController {
                 return
             }
             DispatchQueue.main.async {
+                
                 self.performSegue(withIdentifier: "Checked", sender: "1")
                 
             }

@@ -22,12 +22,31 @@ class TableViewController: ContainerViewController {
     }
     var locations: [StudentInfo] = [] {
         didSet {
-            let  a = StudentInfo(mapString: "de", mediaURL: "de")
-            locations.append(a)
+            locations.sort() {$0.createdAt! > $1.createdAt!}
             tableView.reloadData()
         }
     }
 
+    @IBAction override func doLogOut(_ sender: Any) {
+        Connection.statusLogIn = "loggOut"
+        Connection.sessionUser = ""
+        Connection.userInfo = UserInfo()
+        Connection.logout_now() { error in
+            guard error == "" else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "logOut", sender: "1")
+            }
+        }
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "logOut" {
+            
+            segue.destination as? LogInController
+        }
+    }
 }
 
 

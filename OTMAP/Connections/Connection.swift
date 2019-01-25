@@ -132,6 +132,7 @@ class Connection: UIViewController {
         let task = session.dataTask(with: request) { data, response, error in
             if let statusCode = (response as? HTTPURLResponse)?.statusCode {
                 if statusCode >= 200 && statusCode < 300 {
+                    print(statusCode)
                     if error != nil {
                         return
                     }
@@ -170,7 +171,7 @@ class Connection: UIViewController {
                 }
             }
             DispatchQueue.main.async {
-                completion("Done")
+                completion("")
             }
         
         

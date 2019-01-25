@@ -50,6 +50,11 @@ class AddLocationViewController: UIViewController {
         let ai = self.startAnActivityIndicator()
         CLGeocoder().geocodeAddressString(studentLocation.mapString!) { (placeMarks, err) in
             guard err == nil else {
+                self.errorLocation.text = "incorrect information"
+                self.enterLoacation.text = ""
+                self.enterWebSite.text = ""
+                ai.stopAnimating()
+
                 return
             }
             ai.stopAnimating()

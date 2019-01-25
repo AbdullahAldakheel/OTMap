@@ -89,7 +89,14 @@ class MapViewController: ContainerViewController ,MKMapViewDelegate {
         Connection.statusLogIn = "loggOut"
         Connection.sessionUser = ""
         Connection.userInfo = UserInfo()
-        performSegue(withIdentifier: "logOut", sender: "1")
+        Connection.logout_now() { error in
+            guard error == "" else {
+                return
+            }
+            DispatchQueue.main.async {
+               self.performSegue(withIdentifier: "logOut", sender: "1")
+            }
+        }
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
